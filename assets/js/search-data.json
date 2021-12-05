@@ -1,11 +1,22 @@
 {
   
+    
+        "post0": {
+            "title": "Fastpages로 블로그 시작하기",
+            "content": "",
+            "url": "https://jundamin.github.io/Notebooks/2021/12/04/Untitled.html",
+            "relUrl": "/2021/12/04/Untitled.html",
+            "date": " • Dec 4, 2021"
+        }
+        
+    
+  
 
   
   
 
   
-      "page1": {
+      ,"page1": {
           "title": "About Me",
           "content": "This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
           "url": "https://jundamin.github.io/Notebooks/about/",
