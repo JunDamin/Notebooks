@@ -4,7 +4,7 @@ title: About Me
 permalink: /about/
 ---
 
-This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
+이 블로그는  **[fastpages](https://github.com/fastai/fastpages)** [^1]로 만들어졌습니다.
 
 
 
