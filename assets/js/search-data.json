@@ -4,9 +4,9 @@
         "post0": {
             "title": "오프라인에서 패키지 설치하기",
             "content": "",
-            "url": "https://jundamin.github.io/Notebooks/2022/01/13/_%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8%EC%9C%BC%EB%A1%9C-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0.html",
-            "relUrl": "/2022/01/13/_%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8%EC%9C%BC%EB%A1%9C-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0.html",
-            "date": " • Jan 13, 2022"
+            "url": "https://jundamin.github.io/Notebooks/2022/01/16/_%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8%EC%9C%BC%EB%A1%9C-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0.html",
+            "relUrl": "/2022/01/16/_%EC%98%A4%ED%94%84%EB%9D%BC%EC%9D%B8%EC%9C%BC%EB%A1%9C-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%84%A4%EC%B9%98%ED%95%98%EA%B8%B0.html",
+            "date": " • Jan 16, 2022"
         }
         
     
@@ -15,9 +15,9 @@
         ,"post1": {
             "title": "Pycaret 사용해 보기",
             "content": "pycaret? . Pycaret은 로우코드 머신러닝 라이브러리라고 합니다. . sk-learn과 같은 머신러닝 패키지와의 가장 큰 차이점은 타깃을 하고 있는 부분이 모델이 아니라 머신러닝 프로세스라는 점입니다. . 보통 머신러닝 라이브러리는 새로운 알고리즘이나 방식을 쉽게 적용할 수 있게 만듭니다. sk-learn을 보시면 쉽게 이해할 수 있겠지만, 모델을 정의하고 데이터를 넣고 모델의 성능을 확인할 수 있습니다. . 하지만 보통 우리가 하고자 하는 것은 특정 모델을 만드는 것이 아니라 모델의 성능을 비교하고 적용하는 것입니다. . Pycaret은 바로 이 부분, 모델을 비교하고 그것을 배포하는 것을 자동화 하는 라이브러리라고 보시면 됩니다. .",
-            "url": "https://jundamin.github.io/Notebooks/2022/01/13/_pycaret.html",
-            "relUrl": "/2022/01/13/_pycaret.html",
-            "date": " • Jan 13, 2022"
+            "url": "https://jundamin.github.io/Notebooks/2022/01/16/_pycaret.html",
+            "relUrl": "/2022/01/16/_pycaret.html",
+            "date": " • Jan 16, 2022"
         }
         
     
@@ -26,9 +26,9 @@
         ,"post2": {
             "title": "Fastpages로 블로그 시작하기",
             "content": "",
-            "url": "https://jundamin.github.io/Notebooks/2022/01/13/_fastpages.html",
-            "relUrl": "/2022/01/13/_fastpages.html",
-            "date": " • Jan 13, 2022"
+            "url": "https://jundamin.github.io/Notebooks/2022/01/16/_fastpages.html",
+            "relUrl": "/2022/01/16/_fastpages.html",
+            "date": " • Jan 16, 2022"
         }
         
     
@@ -40,7 +40,7 @@
   
       ,"page1": {
           "title": "About Me",
-          "content": "This website is powered by fastpages 1. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
+          "content": "이 블로그는 fastpages 1로 만들어졌습니다. . a blogging platform that natively supports Jupyter notebooks in addition to other formats. &#8617; . |",
           "url": "https://jundamin.github.io/Notebooks/about/",
           "relUrl": "/about/",
           "date": ""
