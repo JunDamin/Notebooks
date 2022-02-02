@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Julia로 행성의 겉보기 역행운동을 그려보자 | Notebooks of idea</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="Julia로 행성의 겉보기 역행운동을 그려보자" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="아이디어를 정리하는 공간 입니다." />
+<meta property="og:description" content="아이디어를 정리하는 공간 입니다." />
+<link rel="canonical" href="https://jundamin.github.io/Notebooks/2022/02/02/%EC%97%AD%ED%96%89%EC%9A%B4%EB%8F%99.html" />
+<meta property="og:url" content="https://jundamin.github.io/Notebooks/2022/02/02/%EC%97%AD%ED%96%89%EC%9A%B4%EB%8F%99.html" />
+<meta property="og:site_name" content="Notebooks of idea" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-02-02T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Julia로 행성의 겉보기 역행운동을 그려보자" />
+<script type="application/ld+json">
+{"url":"https://jundamin.github.io/Notebooks/2022/02/02/%EC%97%AD%ED%96%89%EC%9A%B4%EB%8F%99.html","@type":"BlogPosting","headline":"Julia로 행성의 겉보기 역행운동을 그려보자","dateModified":"2022-02-02T00:00:00-06:00","datePublished":"2022-02-02T00:00:00-06:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://jundamin.github.io/Notebooks/2022/02/02/%EC%97%AD%ED%96%89%EC%9A%B4%EB%8F%99.html"},"description":"아이디어를 정리하는 공간 입니다.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/Notebooks/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://jundamin.github.io/Notebooks/feed.xml" title="Notebooks of idea" /><link rel="shortcut icon" type="image/x-icon" href="/Notebooks/images/logo.jpg"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/Notebooks/">Notebooks of idea</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/Notebooks/about/">About Me</a><a class="page-link" href="/Notebooks/search/">Search</a><a class="page-link" href="/Notebooks/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Julia로 행성의 겉보기 역행운동을 그려보자</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-02-02T00:00:00-06:00" itemprop="datePublished">
+        Feb 2, 2022
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      2 min read
+    
+</span></p>
+
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-justify-center">
+          <div class="px-2">
+
+    <a href="https://github.com/JunDamin/Notebooks/tree/master/_notebooks/2022-02-02-역행운동.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/Notebooks/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/JunDamin/Notebooks/master?filepath=_notebooks%2F2022-02-02-%EC%97%AD%ED%96%89%EC%9A%B4%EB%8F%99.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/Notebooks/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/JunDamin/Notebooks/blob/master/_notebooks/2022-02-02-역행운동.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/Notebooks/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2022-02-02-역행운동.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#49324;&#51204;&#51456;&#48708;">&#49324;&#51204;&#51456;&#48708;<a class="anchor-link" href="#&#49324;&#51204;&#51456;&#48708;"> </a></h2><p>줄리아를 설치했다고 가정한다.</p>
+<p>우선 패키지를 설치해야 하는데 줄리아 REPL에서 <code>]</code>으로 패키지 매니저 모드로 들어간 후 <code>add Javis</code>를 입력하여 처리하거나</p>
+<p>아래와 같이 <code>Pkg</code> 모듈을 불러와서 설치해야 한다.
+(몇 분 정도 소요 될 수 있다.)</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Pkg</span>
+
+<span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;Javis&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+InterruptException:
+
+Stacktrace:
+ [1] add(pkgs::Vector{Pkg.Types.PackageSpec})
+   @ Pkg.API /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.6/Pkg/src/API.jl:77
+ [2] #add#23
+   @ /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.6/Pkg/src/API.jl:75 [inlined]
+ [3] add
+   @ /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.6/Pkg/src/API.jl:75 [inlined]
+ [4] #add#22
+   @ /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.6/Pkg/src/API.jl:74 [inlined]
+ [5] add(pkg::String)
+   @ Pkg.API /Users/julia/buildbot/worker/package_macos64/build/usr/share/julia/stdlib/v1.6/Pkg/src/API.jl:74
+ [6] top-level scope
+   @ In[1]:3
+ [7] eval
+   @ ./boot.jl:360 [inlined]
+ [8] include_string(mapexpr::typeof(REPL.softscope), mod::Module, code::String, filename::String)
+   @ Base ./loading.jl:1094</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>패키지를 설치했으면 그다음은 패키지를 불러와야 한다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">using</span> <span class="n">Javis</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<div style="padding: 1em; background-color: #f8d6da; border: 1px solid #f5c6cb; font-weight: bold;">
+<p>The WebIO Jupyter extension was not detected. See the
+<a href="https://juliagizmos.github.io/WebIO.jl/latest/providers/ijulia/" target="_blank">
+    WebIO Jupyter integration documentation
+</a>
+for more information.
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#50669;&#54665;&#50868;&#46041;&#51012;-&#44396;&#54616;&#44592;-&#50948;&#54620;-&#54632;&#49688;">&#50669;&#54665;&#50868;&#46041;&#51012; &#44396;&#54616;&#44592; &#50948;&#54620; &#54632;&#49688;<a class="anchor-link" href="#&#50669;&#54665;&#50868;&#46041;&#51012;-&#44396;&#54616;&#44592;-&#50948;&#54620;-&#54632;&#49688;"> </a></h2><p>애니메이션을 만들기 위해서 아래와 같이 함수를 정의했다.</p>
+<ul>
+<li><code>ground</code> : 배경을 설정하는 함수이다. </li>
+<li><code>object</code> : 25 픽셀 정도 되는 원을 그리는 함수다.</li>
+<li><code>path!</code> : 경로에 점을 찍어두는 함수다.</li>
+<li><code>connector</code> : 두 점을 지나는 선을 긋는 하수다.</li>
+<li><code>extender</code> : 안쪽 행성에서 바깥쪽 행성이 어디에 보여지를 그리는 함수다. </li>
+<li><code>abs</code> : 두 <code>Point</code>간의 거리를 구하는 함수이다.</li>
+<li><code>getpoint</code> : 특정 지점을 지나는 백터가 원과 접하는 점을 구하는 함수다.</li>
+</ul>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="k">function</span> <span class="n">ground</span><span class="p">(</span><span class="n">args</span><span class="o">...</span><span class="p">)</span> 
+    <span class="n">background</span><span class="p">(</span><span class="s">&quot;white&quot;</span><span class="p">)</span> <span class="c"># canvas background</span>
+    <span class="n">sethue</span><span class="p">(</span><span class="s">&quot;black&quot;</span><span class="p">)</span> <span class="c"># pen color</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="n">object</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">O</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">)</span>
+    <span class="n">sethue</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">circle</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="o">:</span><span class="n">fill</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">p</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="n">path!</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+    <span class="n">sethue</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">push!</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span> <span class="c"># add pos to points</span>
+    <span class="n">circle</span><span class="o">.</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">:</span><span class="n">fill</span><span class="p">)</span> <span class="c"># draws a circle for each point using broadcasting</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="n">connector</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+    <span class="n">sethue</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">line</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span> <span class="o">:</span><span class="n">stroke</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="n">extender</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+    <span class="n">sethue</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">-</span> <span class="n">p1</span>
+    <span class="n">p3</span> <span class="o">=</span> <span class="n">getpoint</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">O</span><span class="p">)</span>
+    <span class="n">line</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p3</span><span class="p">,</span> <span class="o">:</span><span class="n">stroke</span><span class="p">)</span>
+    <span class="n">circle</span><span class="p">(</span><span class="n">p3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">:</span><span class="n">fill</span><span class="p">)</span>
+    <span class="n">push!</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">p3</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">length</span><span class="p">(</span><span class="n">points</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">200</span>
+        <span class="n">popat!</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">end</span>
+    <span class="n">circle</span><span class="o">.</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">:</span><span class="n">fill</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">import</span> <span class="n">Base</span><span class="o">.</span><span class="n">abs</span>
+
+<span class="k">function</span> <span class="n">abs</span><span class="p">(</span><span class="n">p</span><span class="o">::</span><span class="n">Point</span><span class="p">,</span> <span class="n">p0</span><span class="o">::</span><span class="n">Point</span><span class="p">)</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">p0</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">d</span><span class="o">.</span><span class="n">y</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="n">getpoint</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span>
+    <span class="n">λ</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="n">rate</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="n">new_p</span> <span class="o">=</span> <span class="n">p</span>
+    <span class="k">while</span> <span class="kc">true</span>
+        <span class="n">new_p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">λ</span> <span class="o">*</span> <span class="n">d</span>
+        <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">abs</span><span class="p">(</span><span class="n">new_p</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">end</span>
+        <span class="n">λ</span> <span class="o">+=</span> <span class="n">rate</span>
+    <span class="k">end</span>
+    <span class="k">return</span> <span class="n">new_p</span>
+<span class="k">end</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>getpoint (generic function with 1 method)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#44536;&#47548;&#51012;-&#44536;&#47536;&#45796;">&#44536;&#47548;&#51012; &#44536;&#47536;&#45796;<a class="anchor-link" href="#&#44536;&#47548;&#51012;-&#44536;&#47536;&#45796;"> </a></h2><p>우선 캔버스를 그린 후 붉은 행성과 파란 행성이 돌고 있다고 가정한다.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-julia"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="n">myvideo</span> <span class="o">=</span> <span class="n">Video</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">Background</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="p">,</span> <span class="n">ground</span><span class="p">)</span>
+<span class="n">path_of_red</span> <span class="o">=</span> <span class="n">Point</span><span class="p">[]</span> 
+<span class="n">path_of_blue</span> <span class="o">=</span> <span class="n">Point</span><span class="p">[]</span>
+<span class="n">red_ball</span> <span class="o">=</span> <span class="n">Object</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">args</span><span class="o">...</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">object</span><span class="p">(</span><span class="n">O</span><span class="p">,</span> <span class="s">&quot;#ff2211&quot;</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">act!</span><span class="p">(</span><span class="n">red_ball</span><span class="p">,</span> <span class="n">Action</span><span class="p">(</span><span class="n">anim_rotate_around</span><span class="p">(</span><span class="mi">24</span><span class="nb">π</span><span class="p">,</span> <span class="n">O</span><span class="p">)))</span>
+<span class="n">blue_ball</span> <span class="o">=</span> <span class="n">Object</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">args</span><span class="o">...</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">object</span><span class="p">(</span><span class="n">O</span><span class="p">,</span> <span class="s">&quot;#1122ff&quot;</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">act!</span><span class="p">(</span><span class="n">blue_ball</span><span class="p">,</span> <span class="n">Action</span><span class="p">(</span><span class="n">anim_rotate_around</span><span class="p">(</span><span class="mi">7</span><span class="nb">π</span><span class="p">,</span> <span class="n">O</span><span class="p">)))</span>
+<span class="n">Object</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">args</span><span class="o">...</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">connector</span><span class="p">(</span><span class="n">pos</span><span class="p">(</span><span class="n">red_ball</span><span class="p">),</span> <span class="n">pos</span><span class="p">(</span><span class="n">blue_ball</span><span class="p">),</span> <span class="s">&quot;black&quot;</span><span class="p">))</span>
+<span class="n">Object</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">args</span><span class="o">...</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">path!</span><span class="p">(</span><span class="n">path_of_red</span><span class="p">,</span> <span class="n">pos</span><span class="p">(</span><span class="n">red_ball</span><span class="p">),</span> <span class="s">&quot;red&quot;</span><span class="p">))</span>
+<span class="n">Object</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">args</span><span class="o">...</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">path!</span><span class="p">(</span><span class="n">path_of_blue</span><span class="p">,</span> <span class="n">pos</span><span class="p">(</span><span class="n">blue_ball</span><span class="p">),</span> <span class="s">&quot;blue&quot;</span><span class="p">))</span>
+<span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Object</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="n">args</span><span class="o">...</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">extender</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">pos</span><span class="p">(</span><span class="n">red_ball</span><span class="p">),</span> <span class="n">pos</span><span class="p">(</span><span class="n">blue_ball</span><span class="p">),</span> <span class="mi">800</span><span class="p">,</span> <span class="s">&quot;#112233&quot;</span><span class="p">))</span>
+
+
+<span class="n">render</span><span class="p">(</span>
+    <span class="n">myvideo</span><span class="p">;</span>
+    <span class="n">pathname</span><span class="o">=</span><span class="s">&quot;ghtop_images/retrograde_motion.gif&quot;</span>
+<span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre><span class="ansi-green-fg">Rendering frames...100%|████████████████████████████████| Time: 0:01:32</span>
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#34;ghtop_images/retrograde_motion.gif&#34;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>그림을 그려보면 아래와 같이 결과가 나온다.</p>
+<p>보면 알 수 있듯이 내행성이 외행성을 빠르게 통과할 때 행성이 뒤로 가는 것처럼 보이게 된다.</p>
+<p><img src="/Notebooks/images/copied_from_nb/ghtop_images/retrograde_motion.gif" alt="retrograde_motion" /></p>
+
+</div>
+</div>
+</div>
+&lt;/div&gt;
+ 
+
+</p></div></div></div></div></div></div></div>
+
+
+  </div><a class="u-url" href="/Notebooks/2022/02/02/%EC%97%AD%ED%96%89%EC%9A%B4%EB%8F%99.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/Notebooks/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/Notebooks/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/Notebooks/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>아이디어를 정리하는 공간 입니다.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/JunDamin" target="_blank" title="JunDamin"><svg class="svg-icon grey"><use xlink:href="/Notebooks/assets/minima-social-icons.svg#github"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
