@@ -119,6 +119,37 @@ window.onload = wrap_img;
 
 <div class="container" id="notebook-container">
         
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>인터넷이 연될되지 않은 상황에서 파이썬 패키지를 설치하고자 할 때 알아두어야 할 것을 정리해 보고자 한다.</p>
+<ol>
+<li>패키지를 받는다.<ul>
+<li>pypi에서 whl 하나를 받을 순 있긴 한데 관련된 패키지가 없으면 결국 작동이 안된다.</li>
+<li>pip download  형식으로 작성하면 된다.</li>
+<li>단 운영하고자 하는 OS에서 가동이 가능한 파일을 받아야 한다.</li>
+</ul>
+</li>
+<li>패키지 파일을 옮긴다.<ul>
+<li>패키지 파일을 설치하고자 하는 컴퓨터로 옮겨야 한다.</li>
+<li>이 부분은 망분리 방식에 따라 다르기 때문에 별도로 다루진 않는다.</li>
+</ul>
+</li>
+<li>pip에서 링크 옵션을 지정해서 할 수 있다.<ul>
+<li><code>--no-index</code>옵션과 <code>--find-links</code>옵션을 쓰면 설치할 수 있다.</li>
+</ul>
+</li>
+<li>패키지 중에서 API wrapper형식으로 된 경우 해당 소프트웨어를 설치해야 한다.<ul>
+<li><code>altair</code>를 쓰고자 하면 <code>vega</code>를 설치해야 한다.</li>
+</ul>
+</li>
+</ol>
+<p>예시</p>
+
+<pre><code>pip install --no-index --find-links {패키지가 있는 경로} {설치할 패키지}</code></pre>
+
+</div>
+</div>
+</div>
 </div>
 
 
